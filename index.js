@@ -19,18 +19,22 @@ const createGameboard = () => {
   ctx.strokeRect(0, 0, 500, 500);
 };
 
-createGameboard ();
+createGameboard();
 
-document.addEventListener("keydown", event => {
-  if (event.isComposing || event.keyCode === 229) {
-    return;
-  } else if (event.code === "ArrowDown") {
-    console.log("KeyDown is pressed");
-  } else if (event.code === "ArrowUp") {
-    console.log("KeyUp is pressed");
-  } else if (event.code === "ArrowLeft") {
-    console.log("KeyLeft is pressed");
-  } else if (event.code === "ArrowRight") {
-    console.log("KeyRight is pressed");
-  }
-});
+const createKeyboardListener = () => {
+  document.addEventListener("keydown", event => {
+    if (event.isComposing || event.keyCode === 229) {
+      return;
+    } else if (event.code === "ArrowDown") {
+      console.log("KeyDown is pressed");
+    } else if (event.code === "ArrowUp") {
+      console.log("KeyUp is pressed");
+    } else if (event.code === "ArrowLeft") {
+      console.log("KeyLeft is pressed");
+    } else if (event.code === "ArrowRight") {
+      console.log("KeyRight is pressed");
+    }
+  });
+};
+
+createKeyboardListener();
