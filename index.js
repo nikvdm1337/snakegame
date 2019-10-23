@@ -5,7 +5,10 @@ gameStartElement.addEventListener('click', (event) => {
 })
 
 document.addEventListener("keydown", event => {
-    if (event.keyCode === 40) {
+    if (event.isComposing || event.keyCode === 229) {
+        return;
+    }
+    else if (event.keyCode === 40) {
         console.log('KeyDown is pressed')
     } else if (event.keyCode === 38) {
         console.log('KeyUp is pressed')
