@@ -1,6 +1,5 @@
 export const initialState = {
-  x: 0,
-  y: 0,
+  snake: [{ x: 0, y: 0 }, { x: 50, y: 0 }, { x: 100, y: 0 }],
   boardWidth: 300,
   boardHeight: 500,
   ax: 100,
@@ -9,27 +8,39 @@ export const initialState = {
 };
 
 export function moveSnake(state, direction) {
+//   let tmp = {...state.snake[0]};
+    let tmp = state.snake.slice(1)
+  moveHead(direction, state);
+//   state.snake[1] = tmp;
+    console.log('tmp',tmp)
+   state.snake = state.snake.concat(tmp)
+   console.log(state.snake)
+     onAppleEat(state);
+}
+
+function moveHead(direction, state) {
   switch (direction) {
     case "down":
-      state.y = (state.y + state.snakeSize) % state.boardHeight;
+      state.snake[0].y =
+        (state.snake[0].y + state.snakeSize) % state.boardHeight;
       break;
     case "up":
-      state.y = state.y - state.snakeSize;
-      if (state.y < 0) {
-        state.y = state.boardHeight - state.snakeSize;
+      state.snake[0].y = state.snake[0].y - state.snakeSize;
+      if (state.snake[0].y < 0) {
+        state.snake[0].y = state.boardHeight - state.snakeSize;
       }
       break;
     case "right":
-      state.x = (state.x + state.snakeSize) % state.boardWidth;
+      state.snake[0].x =
+        (state.snake[0].x + state.snakeSize) % state.boardWidth;
       break;
     case "left":
-      state.x = state.x - state.snakeSize;
-      if (state.x < 0) {
-        state.x = state.boardWidth - state.snakeSize;
+      state.snake[0].x = state.snake[0].x - state.snakeSize;
+      if (state.snake[0].x < 0) {
+        state.snake[0].x = state.boardWidth - state.snakeSize;
       }
       break;
   }
-  onAppleEat(state);
 }
 
 function generateRandomPositionOnGameboardForY(state) {
@@ -43,7 +54,7 @@ function generateRandomPositionOnGameboardForX(state) {
 }
 
 function onAppleEat(state) {
-  if (state.x === state.ax && state.y === state.ay) {
+  if (state.snake[0].x === state.ax && state.snake[0].y === state.ay) {
     state.ax = generateRandomPositionOnGameboardForX(state);
     state.ay = generateRandomPositionOnGameboardForY(state);
   }

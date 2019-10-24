@@ -1,6 +1,8 @@
 const canvas = document.getElementById("gameboard");
 const ctx = canvas.getContext("2d");
 
+
+
 export function paint(state) {
   const canvas = document.getElementById("gameboard");
   const ctx = canvas.getContext("2d");
@@ -16,7 +18,10 @@ export function paint(state) {
   // Color of the snake
   ctx.fillStyle = "green";
   // Setting size and position of the snake
-  ctx.fillRect(state.x, state.y, state.snakeSize, state.snakeSize);
+  state.snake.forEach(e => {
+    ctx.fillRect(e.x, e.y, state.snakeSize, state.snakeSize);
+  });
+
   // Color of the apple
   ctx.fillStyle = "red";
   // Setting size and position of the apple
@@ -24,7 +29,7 @@ export function paint(state) {
 
   drawDebugGrid(state, ctx);
 
-  console.log(state);
+  console.log(JSON.stringify(state, null, 2));
 }
 function drawDebugGrid(state, ctx) {
   const columns = state.boardWidth / state.snakeSize;
