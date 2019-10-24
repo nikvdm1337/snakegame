@@ -1,34 +1,36 @@
 import { paint } from "./render";
+import { initialState, moveSnake, resetPosition } from "./state";
 
-const state = {
-  x: 250,
-  y: 250,
-  width: 10,
-  height: 10
+const game = {
+  state: initialState
 };
 
 function bindControls() {
   document.addEventListener("keydown", event => {
     if (event.isComposing || event.keyCode === 229) {
       return;
-    } else if (event.code === "ArrowDown") {
-      state.y++;
-    } else if (event.code === "ArrowUp") {
-      state.y--;
-    } else if (event.code === "ArrowLeft") {
-      state.x--;
-    } else if (event.code === "ArrowRight") {
-      state.x++;
-    } else {
-      return;
     }
-    paint(state);
+    let direction;
+    if (event.code === "ArrowDown") {
+      direction = "down";
+    } else if (event.code === "ArrowUp") {
+      direction = "up";
+    } else if (event.code === "ArrowLeft") {
+      direction = "left";
+    } else if (event.code === "ArrowRight") {
+      direction = "right";
+    }
+
+    if (direction) {
+      moveSnake(game.state, direction);
+      paint(game.state);
+    }
   });
 }
 
 const initializeGame = function() {
   bindControls();
-  paint(state);
+  paint(initialState);
 };
 
 initializeGame();
