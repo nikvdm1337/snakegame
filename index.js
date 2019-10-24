@@ -1,5 +1,5 @@
 import { paint } from "./render";
-import { initialState, moveSnake, resetPosition } from "./state";
+import { initialState, moveSnake } from "./state";
 
 const game = {
   state: initialState

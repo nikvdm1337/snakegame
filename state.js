@@ -1,36 +1,29 @@
 export const initialState = {
-  x: 25,
-  y: 25,
-  boardWidth: 60,
-  boardHeight: 60
+  x: 1,
+  y: 1,
+  boardWidth: 3,
+  boardHeight: 3
 };
 
 export function moveSnake(state, direction) {
   switch (direction) {
     case "down":
-      state.y++;
+      state.y = (state.y + 1) % (state.boardHeight + 1);
       break;
     case "up":
       state.y--;
+      if (state.y < 0) {
+        state.y = state.boardHeight;
+      }
       break;
     case "left":
-      state.x--;
+      state.x = (state.x + 1) % (state.boardWidth + 1);
       break;
     case "right":
       state.x++;
+      if (state.x > state.boardWidth) {
+        state.x = 0;
+      }
       break;
-  }
-  resetPosition(state);
-}
-
-export function resetPosition(state) {
-  if (state.y > state.boardHeight) {
-    state.y = 0;
-  } else if (state.y < 0) {
-    state.y = state.boardHeight;
-  } else if (state.x < 0) {
-    state.x = state.boardWidth;
-  } else if (state.x > state.boardWidth) {
-    state.x = 0;
   }
 }
