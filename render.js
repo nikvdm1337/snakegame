@@ -6,7 +6,7 @@ export function paint(state) {
     const ctx = canvas.getContext("2d");
 
     // Color of the canvas
-    ctx.fillStyle = "lightblue";
+    ctx.fillStyle = "#787964";
     // Setting the size and starting point of the canvas
     ctx.fillRect(0, 0, state.boardWidth, state.boardHeight);
     // Setting the width of the line
@@ -14,15 +14,19 @@ export function paint(state) {
     // Drawing line for the wall
     ctx.strokeRect(0.5, 0.5, state.boardWidth, state.boardHeight);
     // Color of the snake
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "black";
     // Setting size and position of the snake
     state.snake.forEach(e => {
         ctx.fillRect(e.x, e.y, state.snakeSize, state.snakeSize);
+
     });
+    // Color of snake head
+    ctx.fillRect(state.snake[0].x, state.snake[0].y, state.snakeSize, state.snakeSize)
     // Color of the apple
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "black";
     // Setting size and position of the apple
     ctx.fillRect(state.ax, state.ay, state.snakeSize, state.snakeSize);
+
 }
 
 function drawDebugGrid(state, ctx) {
