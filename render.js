@@ -53,8 +53,3 @@ function drawDebugGrid(state, ctx) {
     }
 }
 
-export function drawScore(state) {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText("Score: " + state.score, -10, -20);
-}

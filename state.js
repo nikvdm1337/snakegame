@@ -11,6 +11,7 @@ export const initialState = {
 export function moveSnake(state, direction) {
     const newHead = moveHead(direction, state, state.snake[0]);
     state.snake = [newHead].concat(state.snake.slice(0, state.snake.length - 1))
+    checkCollisionWithSnake(state)
     onAppleEat(state);
 }
 
@@ -62,7 +63,7 @@ function generateRandomPositionOnGameboardForX(state) {
 
 function onAppleEat(state) {
     if (state.snake[0].x === state.ax && state.snake[0].y === state.ay) {
-        let eatenApple = {x: state.ax, y: state.ay, color: 'blue'}
+        let eatenApple = {x: state.ax, y: state.ay}
         state.snake.push(eatenApple)
         state.score++
         updateGameScore(state)
@@ -71,9 +72,29 @@ function onAppleEat(state) {
     }
 }
 
+
+function checkCollisionWithSnake(state) {
+  const snakeHead = state.snake[0];
+  let collisionCounter = 0;
+    for (let i = 1; i < state.snake.length; i++) {
+        if (snakeHead.x === state.snake[i].x && snakeHead.y === state.snake[i].y) {
+          console.log("Boom!")
+        }
+    }
+    return false;
+}
+
+function spawnAppleNotOnSnake(state) {
+  for (let i = 0; i < state.snake.length; i++) {
+    if (state.ax === state.snake[i].x && state.ay === state.snake[i].y) {
+      generateRandomPositionOnGameboardForX(state);
+      generateRandomPositionOnGameboardForY(state);
+    }
+  }
+  return false;
+}
 function updateGameScore(state) {
     document.getElementById('gameScore').innerHTML = `Apples eaten: ${state.score}`
-
 }
 
 

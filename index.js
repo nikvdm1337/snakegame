@@ -1,5 +1,5 @@
 import {paint, drawScore} from "./render";
-import {initialState, moveSnake} from "./state";
+import {checkCollision, initialState, moveSnake} from "./state";
 
 const game = {
     state: initialState
@@ -31,7 +31,6 @@ function bindControls() {
 const initializeGame = function () {
     bindControls();
     paint(initialState);
-
 };
 
 initializeGame();
