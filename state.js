@@ -1,14 +1,13 @@
 export const initialState = {
     snake: [{x: 80, y: 0}, {x: 60, y: 0}, {x: 40, y: 0}],
-    boardWidth: 400,
-    boardHeight: 400,
+    boardWidth: 260,
+    boardHeight: 180,
     ax: 100,
     ay: 100,
     snakeSize: 20,
     score: 0,
     direction: "right",
     collided: false
-
 };
 
 export function moveSnake(state) {
@@ -20,7 +19,7 @@ export function moveSnake(state) {
 function moveHead(state, head) {
     const increment = state.snakeSize;
     switch (state.direction) {
-        case "down":
+        case ("down"):
             return {
                 x: head.x,
                 y: (head.y + increment) % state.boardHeight
@@ -68,7 +67,6 @@ export function eatApple(state) {
         let eatenApple = {x: state.ax, y: state.ay, ignoreCollision: true}
         state.snake.push(eatenApple)
         state.score++
-        updateGameScore(state)
         state.ax = generateRandomPositionOnGameboardForX(state);
         state.ay = generateRandomPositionOnGameboardForY(state);
     }
@@ -81,8 +79,6 @@ export function checkCollision(state) {
         const bodyItem = state.snake[i]
         if (snakeHead.x === bodyItem.x && snakeHead.y === bodyItem.y && !bodyItem.ignoreCollision) {
             state.colided = true
-            console.log("BOOM")
-            console.log(state)
         }
     }
     return false;
@@ -91,16 +87,13 @@ export function checkCollision(state) {
 function spawnAppleNotOnSnake(state) {
     for (let i = 0; i < state.snake.length; i++) {
         if (state.ax === state.snake[i].x && state.ay === state.snake[i].y) {
-            return state.ax = generateRandomPositionOnGameboardForX(state);
-            return state.ay = generateRandomPositionOnGameboardForY(state);
+            state.ax = generateRandomPositionOnGameboardForX(state)
+            state.ay = generateRandomPositionOnGameboardForY(state);
         }
     }
     return false;
 }
 
-function updateGameScore(state) {
-    document.getElementById('gameScore').innerHTML = `Apples eaten: ${state.score}`
-}
 
 
 

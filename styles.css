@@ -1,0 +1,32 @@
+
+#gameboard {
+    z-index: 1;
+    position: absolute;
+    left: 79px;
+    top: 268px;
+}
+
+body {
+    overflow-y:hidden;
+}
+.bg-wrapper {
+    overflow: hidden;
+    width: 600px;
+    height: 600px;
+    background-image:url("./images/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 400px;
+}
+
+div {
+    display: block;
+}
+
+.bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    height: 100%;
+    width: 50%;
+}

@@ -1,17 +1,15 @@
-import {paint} from "./render";
+import {paint, paintGameOver} from "./render";
 import {checkCollision, eatApple, initialState, moveSnake} from "./state";
 
 const game = {
     state: initialState
 };
 
-let direction = "down"
 function bindControls(state) {
     document.addEventListener("keydown", event => {
         if (event.isComposing || event.keyCode === 229) {
             return;
         }
-
         if (event.code === "ArrowDown") {
             state.direction = "down";
         } else if (event.code === "ArrowUp") {
@@ -33,17 +31,24 @@ const initializeGame = function () {
         checkCollision(game.state)
         if(game.state.colided) {
             clearInterval(stateUpdateIntervalId);
+            paintGameOver()
         }
-    },80)
+    },100)
 
     // render cycle
     setInterval(function() {
         paint(game.state)
+        if(game.state.collided) {
+            clearInterval(stateUpdateIntervalId)
+        }
     },32)
-
     bindControls(game.state);
     paint(initialState);
 };
+
+let startButton = document.querySelector('#gameStart')
+
+startButton.addEventListener('click', initializeGame)
 
 initializeGame();
 

@@ -6,7 +6,7 @@ export function paint(state) {
     const ctx = canvas.getContext("2d");
 
     // Color of the canvas
-    ctx.fillStyle = "#787964";
+    ctx.fillStyle = "#6D7965";
     // Setting the size and starting point of the canvas
     ctx.fillRect(0, 0, state.boardWidth, state.boardHeight);
     // Setting the width of the line
@@ -18,42 +18,28 @@ export function paint(state) {
     // Setting size and position of the snake
     state.snake.forEach(e => {
         ctx.fillRect(e.x, e.y, state.snakeSize, state.snakeSize);
-
     });
     // Color of snake head
     ctx.fillRect(state.snake[0].x, state.snake[0].y, state.snakeSize, state.snakeSize)
     // Color of the apple
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "red";
     // Setting size and position of the apple
     ctx.fillRect(state.ax, state.ay, state.snakeSize, state.snakeSize);
+    ctx.fillStyle = "white";
+    ctx.fillText("Score: ", 5, 10);
+    ctx.fillText( state.score, 25, 20)
 
 }
 
-function drawDebugGrid(state, ctx) {
-    const columns = state.boardWidth / state.snakeSize;
-    const rows = state.boardHeight / state.snakeSize;
-
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "gray";
-
-    // draw columns
-    for (let i = 0; i < columns; i++) {
-        const x = i * state.snakeSize + 0.5;
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, state.boardHeight);
-        ctx.closePath();
-        ctx.stroke();
+export function paintGameOver() {
+    const canvas = document.getElementById("gameboard");
+    const ctx = canvas.getContext("2d");
+    if (true) {
+        ctx.fillStyle = "white";
+        ctx.fillText("GAME OVER!", 100,100, )
     }
 
-    // draw rows
-    for (let i = 0; i < rows; i++) {
-        const y = i * state.snakeSize + 0.5;
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(state.boardWidth, y);
-        ctx.closePath();
-        ctx.stroke();
-    }
 }
+
+
 
