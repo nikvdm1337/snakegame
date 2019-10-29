@@ -67,11 +67,17 @@ export function eatApple(state) {
         let eatenApple = {x: state.ax, y: state.ay, ignoreCollision: true}
         state.snake.push(eatenApple)
         state.score++
-        state.ax = generateRandomPositionOnGameboardForX(state);
+        state.ax = generateRandomPositionOnGameboardForX(state)
         state.ay = generateRandomPositionOnGameboardForY(state);
+        for (let i = 0; i < state.snake.length; i++) {
+            if (state.ax === state.snake[i].x && state.ay === state.snake[i].y) {
+                state.ax = generateRandomPositionOnGameboardForX(state)
+                state.ay = generateRandomPositionOnGameboardForY(state);
+            }
+        }
+
     }
 }
-
 
 export function checkCollision(state) {
     const snakeHead = state.snake[0];
@@ -85,12 +91,7 @@ export function checkCollision(state) {
 }
 
 function spawnAppleNotOnSnake(state) {
-    for (let i = 0; i < state.snake.length; i++) {
-        if (state.ax === state.snake[i].x && state.ay === state.snake[i].y) {
-            state.ax = generateRandomPositionOnGameboardForX(state)
-            state.ay = generateRandomPositionOnGameboardForY(state);
-        }
-    }
+
     return false;
 }
 

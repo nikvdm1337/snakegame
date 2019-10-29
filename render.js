@@ -20,6 +20,7 @@ export function paint(state) {
         ctx.fillRect(e.x, e.y, state.snakeSize, state.snakeSize);
     });
     // Color of snake head
+    ctx.fillStyle = 'green'
     ctx.fillRect(state.snake[0].x, state.snake[0].y, state.snakeSize, state.snakeSize)
     // Color of the apple
     ctx.fillStyle = "red";
@@ -27,7 +28,7 @@ export function paint(state) {
     ctx.fillRect(state.ax, state.ay, state.snakeSize, state.snakeSize);
     ctx.fillStyle = "white";
     ctx.fillText("Score: ", 5, 10);
-    ctx.fillText( state.score, 25, 20)
+    ctx.fillText(state.score, 25, 20)
 
 }
 
@@ -36,7 +37,7 @@ export function paintGameOver() {
     const ctx = canvas.getContext("2d");
     if (true) {
         ctx.fillStyle = "white";
-        ctx.fillText("GAME OVER!", 100,100, )
+        ctx.fillText("GAME OVER!", 100, 100,)
     }
 
 }

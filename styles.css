@@ -7,13 +7,14 @@
 }
 
 body {
-    overflow-y:hidden;
+    overflow-y: hidden;
 }
+
 .bg-wrapper {
     overflow: hidden;
     width: 600px;
     height: 600px;
-    background-image:url("./images/bg.jpg");
+    background-image: url("./images/bg.jpg");
     background-repeat: no-repeat;
     background-size: 400px;
 }
@@ -22,7 +23,7 @@ div {
     display: block;
 }
 
-.bg{
+.bg {
     position: absolute;
     left: 0;
     top: 0;

@@ -25,23 +25,23 @@ function bindControls(state) {
 const initializeGame = function () {
 
     // state update cycle
-    const stateUpdateIntervalId = setInterval(function() {
+    const stateUpdateIntervalId = setInterval(function () {
         moveSnake(game.state)
         eatApple(game.state)
         checkCollision(game.state)
-        if(game.state.colided) {
+        if (game.state.colided) {
             clearInterval(stateUpdateIntervalId);
             paintGameOver()
         }
-    },100)
+    }, 100)
 
     // render cycle
-    setInterval(function() {
+    setInterval(function () {
         paint(game.state)
-        if(game.state.collided) {
+        if (game.state.collided) {
             clearInterval(stateUpdateIntervalId)
         }
-    },32)
+    }, 32)
     bindControls(game.state);
     paint(initialState);
 };
