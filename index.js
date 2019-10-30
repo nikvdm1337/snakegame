@@ -1,5 +1,5 @@
-import {paint, paintGameOver} from "./render";
-import {checkCollision, eatApple, initialState, moveSnake} from "./state";
+import {paint, paintGameOver} from "./render.js";
+import {checkCollision, eatApple, initialState, moveSnake} from "./state.js";
 
 const game = {
     state: initialState
