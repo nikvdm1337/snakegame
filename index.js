@@ -26,6 +26,7 @@ const initializeGame = function () {
 
     // state update cycle
     const stateUpdateIntervalId = setInterval(function () {
+        paint(game.state)
         moveSnake(game.state)
         eatApple(game.state)
         checkCollision(game.state)
@@ -33,22 +34,22 @@ const initializeGame = function () {
             clearInterval(stateUpdateIntervalId);
             paintGameOver()
         }
-    }, 100)
+    }, 120)
 
     // render cycle
-    setInterval(function () {
-        paint(game.state)
-        if (game.state.collided) {
-            clearInterval(stateUpdateIntervalId)
-        }
-    }, 32)
+
     bindControls(game.state);
     paint(initialState);
 };
 
+const resetGameState = function () {
+    location.reload()
+}
+
 let startButton = document.querySelector('#gameStart')
 
-startButton.addEventListener('click', initializeGame)
+startButton.addEventListener('click',resetGameState )
+
 
 initializeGame();
 
